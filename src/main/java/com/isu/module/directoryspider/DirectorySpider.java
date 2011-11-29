@@ -3,13 +3,17 @@ package com.isu.module.directoryspider;
 import java.io.File;
 
 import com.google.common.base.Preconditions;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+@Singleton
 public class DirectorySpider 
 {
 	/**
 	 * 
 	 * @param initialDirectory
 	 */
+	@Inject
 	public DirectorySpider() {
 	}
 	
