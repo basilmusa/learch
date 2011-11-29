@@ -1,3 +1,5 @@
+.gitignore  mode=0644  uid=0  gid=0
+.gitmeta  mode=0644  uid=0  gid=0
 pom.xml  mode=0644  uid=0  gid=0
 search.sh  mode=0755  uid=0  gid=0
 src/main/java/com/isu  mode=0755  uid=0  gid=0
