@@ -93,14 +93,7 @@ public class FileIndexer implements FileHandler
 			
 		// Now perform the indexing, if an error occurs, show an ugly
 		// stack trace, just print an ERROR and go to the next file
-		try 
-		{
-			indexFile(file);
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
+		indexFile(file);
 		
 		return Direction.NORMAL;
 	}
