@@ -39,6 +39,10 @@ public class FileIndexer implements FileHandler
 			if (Files.isSymbolicLink(Paths.get(file.getCanonicalPath()))) {
 				return Direction.DO_NOT_TRAVERSE;
 			}
+			if (!Files.isReadable(Paths.get(file.getCanonicalPath())))
+			{
+				return Direction.DO_NOT_TRAVERSE;
+			}
 		} catch (IOException e) {
 			return Direction.DO_NOT_TRAVERSE;
 		}
