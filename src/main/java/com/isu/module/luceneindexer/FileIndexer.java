@@ -9,6 +9,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.isu.module.directoryspider.FileHandler;
@@ -17,6 +18,9 @@ import com.isu.module.directoryspider.FileHandler;
 public class FileIndexer implements FileHandler 
 {
 	private final long MAX_FILE_SIZE_TO_INDEX = (long) (0.5 * 1024 * 1024);
+	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
+	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of("contacts.txt");
+	
 	private IndexWriter indexWriter;
 	
 	@Inject
@@ -25,26 +29,42 @@ public class FileIndexer implements FileHandler
 	}
 	
 	@Override
-	public void process(File file) 
+	public Direction process(File file) 
 	{
 		if (file.isDirectory()) {
-			return;
+			// Exclude .svn and .git folders
+			if (EXCLUDE_DIRECTORIES.contains(file.getName())) 
+			{
+				System.out.println("Returning do not traverse");
+				return Direction.DO_NOT_TRAVERSE;
+			}
+			else
+			{
+				return Direction.NORMAL;
+			}
+		}
+		
+		// Files to exclude
+		if (EXCLUDE_FILES.contains(file.getName())) {
+			return Direction.NORMAL;
 		}
 		
 		// File should be readable
 		if (!file.canRead()) {
 			System.out.println("File [" + file.getName() + "]is not readable, ignoring.");
-			return;
+			return Direction.NORMAL;
 		}
 		
 		// File should should be less than MAX_FILE_SIZE_TO_INDEX in bytes
 		if (file.length() > MAX_FILE_SIZE_TO_INDEX) {
 			System.out.println("File [" + file.getName() + "] exceed maximum size, ignoring.");
-			return;
+			return Direction.NORMAL;
 		}
-		
+			
 		// Now read the text inside it
 		indexFile(file);
+		
+		return Direction.NORMAL;
 	}
 	
 	private void indexFile(File file) {

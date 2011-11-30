@@ -5,6 +5,7 @@ import java.io.File;
 import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.isu.module.directoryspider.FileHandler.Direction;
 
 @Singleton
 public class DirectorySpider 
@@ -34,7 +35,11 @@ public class DirectorySpider
 	 */
 	private void traverseDirectoryRecursively(File startingFile, FileHandler fileHandler) 
 	{
-		fileHandler.process(startingFile);
+		Direction returnedDirection = fileHandler.process(startingFile);
+		
+		if (returnedDirection == Direction.DO_NOT_TRAVERSE) {
+			return; // Do not enter into the directory since it has been excluded
+		}
 		
 		if (startingFile.isDirectory()) 
 		{

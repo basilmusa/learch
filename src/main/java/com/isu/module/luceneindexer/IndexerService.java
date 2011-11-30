@@ -31,13 +31,13 @@ public class IndexerService implements Service, IndexingComponent
 	
 	@Override
 	public void start() {
-		System.out.println("Starting... ");
+		System.out.println("Starting indexing module.");
 		indexWriter = indexWriterProvider.get();
 	}
 
 	@Override
 	public void shutdown() {
-		System.out.println("Stopping... ");
+		System.out.println("Closing index storage.");
 		
 		indexWriterProvider.close();
 	}

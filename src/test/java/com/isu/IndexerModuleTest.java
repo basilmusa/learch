@@ -17,10 +17,11 @@ import com.isu.module.luceneindexer.IndexingComponent;
 public class IndexerModuleTest {
 
 	@Test
-	public void test() {
+	public void test() 
+	{
 		Injector injector = Guice.createInjector(
 				new DirectorySpiderModule(),
-				new IndexerModule());
+				new IndexerModule("D:\\temp\\search"));
 		
 		Service indexerService = injector.getInstance(Key.get(Service.class, IndexerServiceAnnotation.class));
 		ServiceManager.addShutdownHook(indexerService);
