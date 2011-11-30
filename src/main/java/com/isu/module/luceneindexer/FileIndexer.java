@@ -43,6 +43,12 @@ public class FileIndexer implements FileHandler
 				return Direction.NORMAL;
 			}
 		}
+
+		// If file is zero length then ignore
+		if (file.length() == 0) {
+			System.out.println("File [" + file.getName() + "] is zero size.");
+			return Direction.NORMAL;
+		}
 		
 		// Files to exclude
 		if (EXCLUDE_FILES.contains(file.getName())) {
@@ -60,6 +66,7 @@ public class FileIndexer implements FileHandler
 			System.out.println("File [" + file.getName() + "] exceed maximum size, ignoring.");
 			return Direction.NORMAL;
 		}
+
 			
 		// Now read the text inside it
 		indexFile(file);
