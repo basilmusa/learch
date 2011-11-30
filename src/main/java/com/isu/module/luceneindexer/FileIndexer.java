@@ -22,7 +22,7 @@ public class FileIndexer implements FileHandler
 	private final long MAX_FILE_SIZE_TO_INDEX = (long) (0.5 * 1024 * 1024);
 	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
 	private final ImmutableSet<String> EXCLUDE_DIRECTORY_FULL_PATH = ImmutableSet.of("/proc", "/sys", "/opt", "/dev", "/mnt");
-	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of();
+	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of(".gitmeta", ".gitignore");
 	private final ImmutableSet<String> EXCLUDE_EXTENSIONS = ImmutableSet.of(".rrd", ".zip", ".tar.gz", ".log", ".git", ".png", ".jpg");
 	
 	private IndexWriter indexWriter;
