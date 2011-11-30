@@ -21,9 +21,9 @@ public class FileIndexer implements FileHandler
 {
 	private final long MAX_FILE_SIZE_TO_INDEX = (long) (0.5 * 1024 * 1024);
 	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
-	private final ImmutableSet<String> EXCLUDE_DIRECTORY_FULL_PATH = ImmutableSet.of("/proc", "/sys", "/opt");
+	private final ImmutableSet<String> EXCLUDE_DIRECTORY_FULL_PATH = ImmutableSet.of("/proc", "/sys", "/opt", "/dev", "/mnt");
 	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of();
-	private final ImmutableSet<String> EXCLUDE_EXTENSIONS = ImmutableSet.of(".rrd", ".zip", ".tar.gz");
+	private final ImmutableSet<String> EXCLUDE_EXTENSIONS = ImmutableSet.of(".rrd", ".zip", ".tar.gz", ".log", ".git", ".png", ".jpg");
 	
 	private IndexWriter indexWriter;
 	
@@ -81,7 +81,9 @@ public class FileIndexer implements FileHandler
 		// Exclude extensions
 		for (String extension : EXCLUDE_EXTENSIONS) {
 			if (file.getName().endsWith(extension)) {
-				return Direction.NORMAL;
+				// Since it could be a directory with an extension, we will
+				// return DO_NOT_TRAVERSE instead of NORMAL
+				return Direction.DO_NOT_TRAVERSE;
 			}
 		}
 		
