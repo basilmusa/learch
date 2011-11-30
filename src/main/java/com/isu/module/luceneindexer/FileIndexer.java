@@ -21,6 +21,7 @@ public class FileIndexer implements FileHandler
 {
 	private final long MAX_FILE_SIZE_TO_INDEX = (long) (0.5 * 1024 * 1024);
 	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
+	private final ImmutableSet<String> EXCLUDE_DIRECTORY_FULL_PATH = ImmutableSet.of("/proc");
 	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of();
 	
 	private IndexWriter indexWriter;
@@ -46,6 +47,11 @@ public class FileIndexer implements FileHandler
 		if (file.isDirectory()) {
 			// Exclude .svn and .git folders
 			if (EXCLUDE_DIRECTORIES.contains(file.getName())) 
+			{
+				System.out.println("Returning do not traverse");
+				return Direction.DO_NOT_TRAVERSE;
+			}
+			else if (EXCLUDE_DIRECTORY_FULL_PATH.contains(file.getAbsolutePath()))
 			{
 				System.out.println("Returning do not traverse");
 				return Direction.DO_NOT_TRAVERSE;
