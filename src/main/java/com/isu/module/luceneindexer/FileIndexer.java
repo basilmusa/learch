@@ -19,7 +19,7 @@ public class FileIndexer implements FileHandler
 {
 	private final long MAX_FILE_SIZE_TO_INDEX = (long) (0.5 * 1024 * 1024);
 	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
-	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of("contacts.txt");
+	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of();
 	
 	private IndexWriter indexWriter;
 	
