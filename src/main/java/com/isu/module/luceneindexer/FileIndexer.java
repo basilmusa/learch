@@ -61,6 +61,8 @@ public class FileIndexer implements FileHandler
 				System.out.println("Returning do not traverse");
 				return Direction.DO_NOT_TRAVERSE;
 			}
+			// TODO: Add an exclusion for EXTENSIONS here. Since directories ending with .git
+			// should also be removed
 			else
 			{
 				return Direction.NORMAL;
