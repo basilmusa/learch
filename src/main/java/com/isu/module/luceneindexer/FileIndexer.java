@@ -1,7 +1,6 @@
 package com.isu.module.luceneindexer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,6 +23,7 @@ public class FileIndexer implements FileHandler
 	private final ImmutableSet<String> EXCLUDE_DIRECTORIES = ImmutableSet.of(".svn", ".git");
 	private final ImmutableSet<String> EXCLUDE_DIRECTORY_FULL_PATH = ImmutableSet.of("/proc", "/sys", "/opt");
 	private final ImmutableSet<String> EXCLUDE_FILES = ImmutableSet.of();
+	private final ImmutableSet<String> EXCLUDE_EXTENSIONS = ImmutableSet.of(".rrd", ".zip", ".tar.gz");
 	
 	private IndexWriter indexWriter;
 	
@@ -76,6 +76,13 @@ public class FileIndexer implements FileHandler
 		// Files to exclude
 		if (EXCLUDE_FILES.contains(file.getName())) {
 			return Direction.NORMAL;
+		}
+		
+		// Exclude extensions
+		for (String extension : EXCLUDE_EXTENSIONS) {
+			if (file.getName().endsWith(extension)) {
+				return Direction.NORMAL;
+			}
 		}
 		
 		// File should be readable
