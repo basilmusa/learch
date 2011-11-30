@@ -19,6 +19,7 @@ public class IndexerModuleTest {
 	@Test
 	public void test() 
 	{
+/**
 		Injector injector = Guice.createInjector(
 				new DirectorySpiderModule(),
 				new IndexerModule("D:\\temp\\search"));
@@ -32,5 +33,6 @@ public class IndexerModuleTest {
 		indexingComponent.indexAllFiles("D:\\basil\\source_code\\personal");
 		
 		ServiceManager.shutdownAllServices();
+*/
 	}
 }
