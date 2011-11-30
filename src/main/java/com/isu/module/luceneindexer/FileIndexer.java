@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -31,6 +33,16 @@ public class FileIndexer implements FileHandler
 	@Override
 	public Direction process(File file) 
 	{
+		// Handle symbolic links
+		try {
+			if (Files.isSymbolicLink(Paths.get(file.getCanonicalPath()))) {
+				return Direction.DO_NOT_TRAVERSE;
+			}
+		} catch (IOException e) {
+			return Direction.DO_NOT_TRAVERSE;
+		}
+
+		// Check if directory
 		if (file.isDirectory()) {
 			// Exclude .svn and .git folders
 			if (EXCLUDE_DIRECTORIES.contains(file.getName())) 
