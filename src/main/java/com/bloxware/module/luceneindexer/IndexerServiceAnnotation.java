@@ -1,4 +1,4 @@
-package com.isu.module.luceneindexer;
+package com.bloxware.module.luceneindexer;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -12,5 +12,5 @@ import com.google.inject.BindingAnnotation;
 
 @BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
 
-public @interface IndexDirectoryPath {
+public @interface IndexerServiceAnnotation {
 }

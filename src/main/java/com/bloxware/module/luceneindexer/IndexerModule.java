@@ -1,8 +1,8 @@
-package com.isu.module.luceneindexer;
+package com.bloxware.module.luceneindexer;
 
+import com.bloxware.internals.service.Service;
+import com.bloxware.module.directoryspider.FileHandler;
 import com.google.inject.AbstractModule;
-import com.isu.internals.service.Service;
-import com.isu.module.directoryspider.FileHandler;
 
 public class IndexerModule extends AbstractModule {
 

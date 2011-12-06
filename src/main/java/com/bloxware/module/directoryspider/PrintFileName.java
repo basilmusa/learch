@@ -1,4 +1,4 @@
-package com.isu.module.directoryspider;
+package com.bloxware.module.directoryspider;
 
 import java.io.File;
 

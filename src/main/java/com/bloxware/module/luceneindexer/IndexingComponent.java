@@ -1,4 +1,4 @@
-package com.isu.module.luceneindexer;
+package com.bloxware.module.luceneindexer;
 
 import java.io.File;
 

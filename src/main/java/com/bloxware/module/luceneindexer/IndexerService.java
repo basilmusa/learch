@@ -1,15 +1,15 @@
-package com.isu.module.luceneindexer;
+package com.bloxware.module.luceneindexer;
 
 import java.io.IOException;
 
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 
+import com.bloxware.internals.service.Service;
+import com.bloxware.module.directoryspider.DirectorySpider;
+import com.bloxware.module.directoryspider.FileHandler;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.isu.internals.service.Service;
-import com.isu.module.directoryspider.DirectorySpider;
-import com.isu.module.directoryspider.FileHandler;
 
 @Singleton
 public class IndexerService implements Service, IndexingComponent

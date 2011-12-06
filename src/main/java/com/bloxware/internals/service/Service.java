@@ -1,4 +1,4 @@
-package com.isu.internals.service;
+package com.bloxware.internals.service;
 
 public interface Service {
 	void start();

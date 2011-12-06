@@ -1,11 +1,11 @@
-package com.isu.module.directoryspider;
+package com.bloxware.module.directoryspider;
 
 import java.io.File;
 
+import com.bloxware.module.directoryspider.FileHandler.Direction;
 import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.isu.module.directoryspider.FileHandler.Direction;
 
 @Singleton
 public class DirectorySpider 

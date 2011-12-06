@@ -1,4 +1,4 @@
-package com.isu.internals.service;
+package com.bloxware.internals.service;
 
 import java.util.LinkedList;
 import java.util.List;

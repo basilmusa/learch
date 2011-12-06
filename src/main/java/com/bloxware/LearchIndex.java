@@ -1,16 +1,16 @@
-package com.isu;
+package com.bloxware;
 
 import java.io.File;
 
+import com.bloxware.internals.service.Service;
+import com.bloxware.internals.service.ServiceManager;
+import com.bloxware.module.directoryspider.DirectorySpiderModule;
+import com.bloxware.module.luceneindexer.IndexerModule;
+import com.bloxware.module.luceneindexer.IndexerServiceAnnotation;
+import com.bloxware.module.luceneindexer.IndexingComponent;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
-import com.isu.internals.service.Service;
-import com.isu.internals.service.ServiceManager;
-import com.isu.module.directoryspider.DirectorySpiderModule;
-import com.isu.module.luceneindexer.IndexerModule;
-import com.isu.module.luceneindexer.IndexerServiceAnnotation;
-import com.isu.module.luceneindexer.IndexingComponent;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
