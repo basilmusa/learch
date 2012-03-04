@@ -3,6 +3,7 @@ package com.bloxware.module.luceneindexer;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.lucene.analysis.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
@@ -38,7 +39,7 @@ public class IndexWriterProvider implements Provider<IndexWriter> {
 		{
 			Directory dir = FSDirectory.open(new File(this.indexDirectoryPath));
 			
-			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_34, new StandardAnalyzer(Version.LUCENE_34));
+			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_34, new WhitespaceAnalyzer(Version.LUCENE_34));
 			iwc.setOpenMode(OpenMode.CREATE);
 			writer = new IndexWriter(dir,iwc);
 			
