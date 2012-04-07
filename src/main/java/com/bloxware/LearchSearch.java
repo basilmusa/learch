@@ -51,7 +51,7 @@ public class LearchSearch {
 					"contents", 
 					new StandardAnalyzer(Version.LUCENE_34));
 			Query query = parser.parse(searchString);
-			TopDocs results = is.search(query, 100);
+			TopDocs results = is.search(query, 3000);
 			
 			for (ScoreDoc scoreDoc : results.scoreDocs) {
 				Document doc = is.doc(scoreDoc.doc);
