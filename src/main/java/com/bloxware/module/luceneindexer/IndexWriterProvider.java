@@ -38,6 +38,8 @@ public class IndexWriterProvider implements Provider<IndexWriter> {
 		{
 			Directory dir = FSDirectory.open(new File(this.indexDirectoryPath));
 			
+			// new WordDelimiterFilter(in, generateWordParts, generateNumberParts, catenateWords, catenateNumbers, catenateAll, splitOnCaseChange, preserveOriginal, splitOnNumerics, protWords)
+			
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_34, new StandardAnalyzer(Version.LUCENE_34));
 			iwc.setOpenMode(OpenMode.CREATE);
 			writer = new IndexWriter(dir,iwc);
